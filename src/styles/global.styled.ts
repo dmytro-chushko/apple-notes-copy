@@ -10,6 +10,10 @@ export const GlobalStyle = createGlobalStyle`
 			box-sizing: border-box;
 		}
 
+		html {
+			font-size: ${({ theme }) => theme.fontSize.base};
+		}
+
 		body {
 			font-family: DM Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
 				"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
@@ -19,6 +23,9 @@ export const GlobalStyle = createGlobalStyle`
 			background-color: ${({ theme }) => theme.colors.primaryChangingBgc};
 
 			transition: ${({ theme }) => theme.animation.primaryTransition};
+
+			@media (${({ theme }) => theme.media.minLaptop}) {
+				font-size: ${({ theme }) => theme.fontSize.medium};
 		}
 
 		img {

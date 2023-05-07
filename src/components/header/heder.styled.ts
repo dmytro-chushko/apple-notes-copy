@@ -1,0 +1,20 @@
+import styled from "styled-components";
+
+export const HeaderContainer = styled.header`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: ${({ theme }) => theme.size.s};
+
+	background-color: ${({ theme }) => theme.colors.secondaryChangingBgc};
+
+	transition: ${({ theme }) => theme.animation.primaryTransition};
+
+	@media (${({ theme }) => theme.media.minTablet}) {
+		padding: ${({ theme }) => theme.size.m};
+	}
+
+	@media (${({ theme }) => theme.media.minLaptop}) {
+		padding: ${({ theme }) => theme.size.l};
+	}
+`;

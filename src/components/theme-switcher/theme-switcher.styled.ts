@@ -88,6 +88,7 @@ export const SwitcherLever = styled.div<ISwitcherLever>`
 	width: 50%;
 	height: 100%;
 
+	border: ${({ theme }) => theme.border.primaryBorder};
 	border-radius: 50%;
 	background-color: ${({ theme }) => theme.colors.primaryColor};
 	transform: ${({ isChecked }) => (isChecked ? "translateX(100%)" : "translateX(0)")};

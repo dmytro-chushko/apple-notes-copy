@@ -20,6 +20,10 @@ export interface ITheme {
 		bold: string;
 	};
 	size: {
+		s: string;
+		m: string;
+		l: string;
+		xl: string;
 		themeSwitcherHeight: string;
 		themeSwithcerWidth: string;
 	};
@@ -30,14 +34,23 @@ export interface ITheme {
 		primaryTransition: string;
 		primaryAnimation: string;
 	};
+	media: {
+		maxMobile: string;
+		minTablet: string;
+		maxTablet: string;
+		minLaptop: string;
+		maxLaptop: string;
+		minDesktop: string;
+		maxDesktop: string;
+	};
 }
 
 export const theme = (isDark?: boolean): ITheme => ({
 	colors: {
-		primaryChangingBgc: isDark ? "#000000" : "#FFFFFF",
+		primaryChangingBgc: isDark ? "#3F3F3F" : "#FFFFFF",
 		primaryChangingColor: isDark ? "#9F9FA5" : "#8A8A8E",
 		secondaryChangingColor: isDark ? "#FFFFFF" : "#202020",
-		secondaryChangingBgc: isDark ? "#3F3F3F" : "#ECECEC",
+		secondaryChangingBgc: isDark ? "#1C1C1E" : "#ECECEC",
 		primaryColor: "#FFFFFF",
 		primariBgc: "#000000",
 		modalBgc: "rgba(0,0,0,0.3)",
@@ -54,14 +67,27 @@ export const theme = (isDark?: boolean): ITheme => ({
 		bold: "700",
 	},
 	size: {
+		s: "0.5em",
+		m: "1em",
+		l: "1.5em",
+		xl: "2.5em",
 		themeSwitcherHeight: "30px",
 		themeSwithcerWidth: "60px",
 	},
 	border: {
-		primaryBorder: "2px solid #D1D5DB",
+		primaryBorder: `2px solid ${isDark ? "#9F9FA5" : "#8A8A8E"}`,
 	},
 	animation: {
 		primaryTransition: "all ease-in-out 0.4s",
 		primaryAnimation: "1s linear infinite",
+	},
+	media: {
+		maxMobile: "max-width: 480px",
+		minTablet: "min-width: 481px",
+		maxTablet: "max-width: 1023px",
+		minLaptop: "min-width: 1024px",
+		maxLaptop: "max-width: 1279px",
+		minDesktop: "min-width: 1280px",
+		maxDesktop: "max-width: 1920px",
 	},
 });
