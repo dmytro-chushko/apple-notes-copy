@@ -1,9 +1,10 @@
 import { ThemeSwitcher } from "components/theme-switcher";
 import { AppContext } from "providers";
 import { useContext } from "react";
+import { ControlsBar } from "components/controls-bar";
+import { SearchBox } from "components/search-box";
 
 import * as Styled from "./heder.styled";
-import { ControlsBar } from "components/controls-bar";
 
 export const Header = () => {
 	const { isDark, setIsDark } = useContext(AppContext);
@@ -11,6 +12,9 @@ export const Header = () => {
 	return (
 		<Styled.HeaderContainer>
 			<ControlsBar />
+			<Styled.SearchWrapper>
+				<SearchBox />
+			</Styled.SearchWrapper>
 			<ThemeSwitcher isChecked={isDark} switcher={setIsDark} />
 		</Styled.HeaderContainer>
 	);

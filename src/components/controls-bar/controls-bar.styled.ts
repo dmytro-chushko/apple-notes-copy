@@ -4,6 +4,10 @@ export const ControlsContainer = styled.nav`
 	display: flex;
 	align-items: center;
 	gap: ${({ theme }) => theme.size.m};
+
+	@media (${({ theme }) => theme.media.maxMobile}) {
+		gap: ${({ theme }) => theme.size.s};
+	}
 `;
 
 export const ControlButton = styled.button`
@@ -18,14 +22,16 @@ export const ControlButton = styled.button`
 
 	transition: ${({ theme }) => theme.animation.primaryTransition};
 
-	:hover {
-		transform: scale(1.2);
-		border-radius: 6px;
-		background-color: ${({ theme }) => theme.colors.primaryChangingBgc};
+	@media (hover: hover) {
+		:hover {
+			transform: scale(1.3);
+			border-radius: 6px;
+			background-color: ${({ theme }) => theme.colors.primaryChangingBgc};
+		}
 	}
 
 	:active {
-		transform: scale(1);
+		transform: scale(1.1);
 		transition-duration: 0.2s;
 	}
 `;

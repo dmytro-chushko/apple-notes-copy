@@ -35,46 +35,55 @@ export const SwitcherContainer = styled.label`
 	cursor: pointer;
 	border: ${({ theme }) => theme.border.primaryBorder};
 	border-radius: 100px;
+	background-color: ${({ theme }) => theme.colors.secondaryChangingBgc};
 
-	:hover ${LightThemeIcon} {
-		animation: rolling ${({ theme }) => theme.animation.primaryAnimation};
-		animation-duration: 3s;
+	@media (hover: hover) {
+		:hover ${LightThemeIcon} {
+			animation: rolling ${({ theme }) => theme.animation.primaryAnimation};
+			animation-duration: 3s;
 
-		@keyframes rolling {
-			0% {
-				transform: rotate(0deg);
-			}
-			50% {
-				transform: rotate(180deg);
-			}
-			100% {
-				transform: rotate(360deg);
+			@keyframes rolling {
+				0% {
+					transform: rotate(0deg);
+				}
+				50% {
+					transform: rotate(180deg);
+				}
+				100% {
+					transform: rotate(360deg);
+				}
 			}
 		}
-	}
 
-	:hover ${DarkThemeIcon} {
-		animation: swinging ${({ theme }) => theme.animation.primaryAnimation};
-		animation-duration: 3s;
+		:hover ${DarkThemeIcon} {
+			animation: swinging ${({ theme }) => theme.animation.primaryAnimation};
+			animation-duration: 3s;
 
-		@keyframes swinging {
-			0% {
-				transform: rotate(0deg);
-			}
-			25% {
-				transform: rotate(-45deg);
-			}
-			50% {
-				transform: rotate(0deg);
-			}
-			75% {
-				transform: rotate(45deg);
+			@keyframes swinging {
+				0% {
+					transform: rotate(0deg);
+				}
+				25% {
+					transform: rotate(-45deg);
+				}
+				50% {
+					transform: rotate(0deg);
+				}
+				75% {
+					transform: rotate(45deg);
+				}
 			}
 		}
 	}
 
 	input {
 		display: none;
+	}
+
+	@media (${({ theme }) => theme.media.medMobile}) {
+		position: fixed;
+		top: ${({ theme }) => `calc(${theme.size.xl} + ${theme.size.l})`};
+		right: ${({ theme }) => theme.size.s};
 	}
 `;
 

@@ -18,3 +18,12 @@ export const HeaderContainer = styled.header`
 		padding: ${({ theme }) => theme.size.l};
 	}
 `;
+
+export const SearchWrapper = styled.div`
+	margin-left: auto;
+	margin-right: ${({ theme }) => theme.size.m};
+
+	@media (${({ theme }) => theme.media.medMobile}) {
+		margin-right: 0;
+	}
+`;

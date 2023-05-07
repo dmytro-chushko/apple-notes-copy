@@ -17,7 +17,7 @@ export const GlobalStyle = createGlobalStyle`
 		body {
 			font-family: DM Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
 				"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-			font-size: ${({ theme }) => theme.fontSize.base};
+			font-size: ${({ theme }) => theme.fontSize.regular};
 
 			color: ${({ theme }) => theme.colors.primaryChangingColor};
 			background-color: ${({ theme }) => theme.colors.primaryChangingBgc};
@@ -26,6 +26,7 @@ export const GlobalStyle = createGlobalStyle`
 
 			@media (${({ theme }) => theme.media.minLaptop}) {
 				font-size: ${({ theme }) => theme.fontSize.medium};
+			}
 		}
 
 		img {

@@ -35,6 +35,7 @@ export interface ITheme {
 		primaryAnimation: string;
 	};
 	media: {
+		medMobile: string;
 		maxMobile: string;
 		minTablet: string;
 		maxTablet: string;
@@ -70,7 +71,7 @@ export const theme = (isDark?: boolean): ITheme => ({
 		s: "0.5em",
 		m: "1em",
 		l: "1.5em",
-		xl: "2.5em",
+		xl: "2em",
 		themeSwitcherHeight: "30px",
 		themeSwithcerWidth: "60px",
 	},
@@ -82,6 +83,7 @@ export const theme = (isDark?: boolean): ITheme => ({
 		primaryAnimation: "1s linear infinite",
 	},
 	media: {
+		medMobile: "max-width: 389px",
 		maxMobile: "max-width: 480px",
 		minTablet: "min-width: 481px",
 		maxTablet: "max-width: 1023px",
