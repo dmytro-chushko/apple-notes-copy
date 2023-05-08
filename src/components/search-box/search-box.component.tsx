@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from "react";
 
 import * as Styled from "./search-box.styled";
 import { AppContext } from "providers";
-import { useDebounced } from "hooks/debounce";
+import { useDebounced } from "hooks/debounce.hook";
 
 export const SearchBox = () => {
 	const { setSearchTerm } = useContext(AppContext);
