@@ -1,22 +1,22 @@
 import { useMemo, useEffect } from "react";
 import { createPortal } from "react-dom";
+import { ContentWindow } from "./content-window";
 
 import * as Styled from "./modal-window.styled";
 import { TypeSetState } from "types/set-state.types";
 
 interface IModalWindow {
-	children: React.ReactNode;
 	isOpen: boolean;
-	setIsOpen: TypeSetState<boolean>;
+	onClose: TypeSetState<boolean>;
 }
 
 const modalRootElement = document.querySelector("#modal");
 
-export const ModalWindow = ({ children, isOpen, setIsOpen }: IModalWindow) => {
+export const ModalWindow = ({ isOpen, onClose }: IModalWindow) => {
 	const element = useMemo(() => document.createElement("div"), []);
 
 	const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-		if ((e.target as HTMLDivElement).dataset.backdrop) setIsOpen(false);
+		if ((e.target as HTMLDivElement).dataset.backdrop) onClose(false);
 	};
 
 	useEffect(() => {
@@ -29,7 +29,7 @@ export const ModalWindow = ({ children, isOpen, setIsOpen }: IModalWindow) => {
 
 	return createPortal(
 		<Styled.Backdrop isOpen={isOpen} onClick={handleClick} data-backdrop={true}>
-			{children}
+			<ContentWindow onClose={onClose} />
 		</Styled.Backdrop>,
 		element,
 	);

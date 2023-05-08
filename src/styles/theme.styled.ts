@@ -7,6 +7,9 @@ export interface ITheme {
 		primaryColor: string;
 		primariBgc: string;
 		modalBgc: string;
+		primaryButtonBgc: string;
+		primaryButtonHover: string;
+		secondaryButtonHover: string;
 	};
 	fontSize: {
 		base: string;
@@ -29,6 +32,9 @@ export interface ITheme {
 	};
 	border: {
 		primaryBorder: string;
+	};
+	outline: {
+		primaryButtonOutline: string;
 	};
 	animation: {
 		primaryTransition: string;
@@ -55,6 +61,9 @@ export const theme = (isDark?: boolean): ITheme => ({
 		primaryColor: "#FFFFFF",
 		primariBgc: "#000000",
 		modalBgc: "rgba(0,0,0,0.3)",
+		primaryButtonBgc: "#007AFF",
+		primaryButtonHover: "#1D49AA",
+		secondaryButtonHover: isDark ? "#6D6D6D" : "#D6D6D6",
 	},
 	fontSize: {
 		base: "14px",
@@ -77,6 +86,9 @@ export const theme = (isDark?: boolean): ITheme => ({
 	},
 	border: {
 		primaryBorder: `2px solid ${isDark ? "#9F9FA5" : "#8A8A8E"}`,
+	},
+	outline: {
+		primaryButtonOutline: "2px solid #93ACE3",
 	},
 	animation: {
 		primaryTransition: "all ease-in-out 0.4s",
