@@ -10,3 +10,14 @@ export interface INote {
 export interface IGetAllNotes {
 	records: INote[];
 }
+
+export interface INoteContent {
+	title: string;
+	content: string;
+	date: string;
+}
+
+export enum DATE_TYPE {
+	WORKSPACE = "workspace",
+	SIDE_BAR = "side-bar",
+}
