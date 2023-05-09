@@ -1,5 +1,20 @@
+import { useContext } from "react";
+import { AppContext } from "providers";
+
 import * as Styled from "./side-bar.styled";
+import { NoteCard } from "./note-card/note-card.component";
 
 export const SideBar = () => {
-	return <Styled.SideBarContainer>NotesList</Styled.SideBarContainer>;
+	const { notesList } = useContext(AppContext);
+
+	return (
+		<Styled.SideBarContainer>
+			<ul>
+				{notesList &&
+					notesList.map(({ id, values: { title, content, date } }) => (
+						<NoteCard key={id} title={title} content={content} date={date} />
+					))}
+			</ul>
+		</Styled.SideBarContainer>
+	);
 };

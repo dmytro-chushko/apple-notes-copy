@@ -10,6 +10,7 @@ export interface ITheme {
 		primaryButtonBgc: string;
 		primaryButtonHover: string;
 		secondaryButtonHover: string;
+		hoveredCardBgc: string;
 	};
 	fontSize: {
 		base: string;
@@ -32,6 +33,7 @@ export interface ITheme {
 	};
 	border: {
 		primaryBorder: string;
+		secondaryBorder: string;
 	};
 	outline: {
 		primaryButtonOutline: string;
@@ -64,6 +66,7 @@ export const theme = (isDark?: boolean): ITheme => ({
 		primaryButtonBgc: "#007AFF",
 		primaryButtonHover: "#1D49AA",
 		secondaryButtonHover: isDark ? "#6D6D6D" : "#D6D6D6",
+		hoveredCardBgc: isDark ? "#7A7A7B" : "#D8D8D8",
 	},
 	fontSize: {
 		base: "14px",
@@ -86,6 +89,7 @@ export const theme = (isDark?: boolean): ITheme => ({
 	},
 	border: {
 		primaryBorder: `2px solid ${isDark ? "#9F9FA5" : "#8A8A8E"}`,
+		secondaryBorder: `2px solid ${isDark ? "#7A7A7B" : "#D8D8D8"}`,
 	},
 	outline: {
 		primaryButtonOutline: "2px solid #93ACE3",
