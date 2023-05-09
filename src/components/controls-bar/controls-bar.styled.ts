@@ -22,15 +22,20 @@ export const ControlButton = styled.button`
 
 	transition: ${({ theme }) => theme.animation.primaryTransition};
 
+	:disabled {
+		color: ${({ theme }) => theme.colors.primaryChangingColor};
+		cursor: default;
+	}
+
 	@media (hover: hover) {
-		:hover {
+		:hover:not([disabled]) {
 			transform: scale(1.3);
 			border-radius: 6px;
 			background-color: ${({ theme }) => theme.colors.primaryChangingBgc};
 		}
 	}
 
-	:active {
+	:active:not([disabled]) {
 		transform: scale(1.1);
 		transition-duration: 0.2s;
 	}

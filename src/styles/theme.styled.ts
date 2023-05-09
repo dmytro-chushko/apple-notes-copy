@@ -95,7 +95,7 @@ export const theme = (isDark?: boolean): ITheme => ({
 		primaryButtonOutline: "2px solid #93ACE3",
 	},
 	animation: {
-		primaryTransition: "all ease-in-out 0.4s",
+		primaryTransition: "all ease-in-out 0.2s",
 		primaryAnimation: "1s linear infinite",
 	},
 	media: {

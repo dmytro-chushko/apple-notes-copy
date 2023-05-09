@@ -8,16 +8,15 @@ import * as Styled from "./workspace.styled";
 
 export const Workspace = () => {
 	const { noteContent } = useContext(AppContext);
-	const { date, title, content } = noteContent;
-	const modifiedDate = formatsDateWithTime(DATE_TYPE.WORKSPACE, date);
+	const modifiedDate = noteContent && formatsDateWithTime(DATE_TYPE.WORKSPACE, noteContent.date);
 
 	return (
 		<Styled.WorkspaceContainer>
-			{date && (
+			{noteContent && (
 				<>
 					<Styled.DateContainer>{modifiedDate}</Styled.DateContainer>
-					<CardTitle>{title}</CardTitle>
-					<p>{content}</p>
+					<CardTitle>{noteContent.title}</CardTitle>
+					<p>{noteContent.content}</p>
 				</>
 			)}
 		</Styled.WorkspaceContainer>

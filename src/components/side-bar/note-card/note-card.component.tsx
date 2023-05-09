@@ -13,7 +13,7 @@ interface INoteCard {
 	content: string;
 	date: string;
 	activeId: string;
-	setActiveId: TypeSetState<string>;
+	setActiveId: TypeSetState<string> | null;
 }
 
 export const NoteCard = ({ id, title, content, date, activeId, setActiveId }: INoteCard) => {
@@ -25,7 +25,7 @@ export const NoteCard = ({ id, title, content, date, activeId, setActiveId }: IN
 
 	const handleClick = () => {
 		setNoteContent && setNoteContent({ title, content, date });
-		setActiveId(id);
+		setActiveId && setActiveId(id);
 	};
 
 	return (

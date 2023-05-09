@@ -1,6 +1,5 @@
-import { useEffect } from "react";
 import { useQuintaDb } from "hooks/quinta-db.hook";
-import { createContext, useMemo, useState } from "react";
+import { createContext, useCallback, useMemo, useState } from "react";
 import { TypeSetState } from "types/set-state.types";
 import { INote, INoteContent } from "types/data.types";
 
@@ -13,56 +12,47 @@ interface IAppContext {
 	searchTerm: string;
 	notesList: INote[] | null;
 	isLoading: boolean;
-	noteContent: INoteContent;
-	setIsDark: TypeSetState<boolean> | null;
-	setSearchTerm: TypeSetState<string> | null;
-	setNoteContent: TypeSetState<INoteContent> | null;
+	activeId: string;
+	noteContent: INoteContent | null;
+	setIsDark: TypeSetState<boolean>;
+	setSearchTerm: TypeSetState<string>;
+	setNoteContent: TypeSetState<INoteContent | null>;
+	setActiveId: TypeSetState<string>;
+	handleDelete: () => Promise<void>;
 }
 
-export const AppContext = createContext<IAppContext>({
-	isDark: true,
-	searchTerm: "",
-	notesList: null,
-	isLoading: false,
-	noteContent: { title: "", content: "", date: "" },
-	setIsDark: null,
-	setSearchTerm: null,
-	setNoteContent: null,
-});
+export const AppContext = createContext<IAppContext>({} as IAppContext);
 
 export const AppContextProvider = ({ children }: IAppProvider) => {
 	const [isDark, setIsDark] = useState<boolean>(true);
 	const [searchTerm, setSearchTerm] = useState<string>("");
+	const [activeId, setActiveId] = useState<string>("");
 	const [notesList, setNotesList] = useState<INote[] | null>(null);
-	const [noteContent, setNoteContent] = useState<INoteContent>({
-		title: "",
-		content: "",
-		date: "",
-	});
-	const { getAllNotes, isLoading } = useQuintaDb();
+	const [noteContent, setNoteContent] = useState<INoteContent | null>(null);
+	const { deleteNote, isLoading } = useQuintaDb({ isDark, setNotesList });
+
+	const handleDelete = async () => {
+		setNoteContent(null);
+		await deleteNote(activeId);
+		setActiveId("");
+	};
+
 	const value = useMemo(
 		() => ({
 			isDark,
 			searchTerm,
 			notesList,
 			isLoading,
+			activeId,
 			noteContent,
 			setIsDark,
 			setSearchTerm,
 			setNoteContent,
+			setActiveId,
+			handleDelete,
 		}),
-		[isDark, searchTerm, notesList, isLoading, noteContent],
+		[isDark, searchTerm, notesList, isLoading, noteContent, activeId],
 	);
-
-	useEffect(() => {
-		const fetchNotesList = async () => {
-			const dataList = await getAllNotes();
-			if (dataList) {
-				setNotesList(dataList);
-			}
-		};
-		fetchNotesList();
-	}, []);
 
 	return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

@@ -103,4 +103,5 @@ export const SwitcherLever = styled.div<ISwitcherLever>`
 	transform: ${({ isChecked }) => (isChecked ? "translateX(100%)" : "translateX(0)")};
 
 	transition: ${({ theme }) => theme.animation.primaryTransition};
+	transition-duration: 0.4s;
 `;

@@ -1,12 +1,11 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AppContext } from "providers";
 
 import * as Styled from "./side-bar.styled";
 import { NoteCard } from "./note-card/note-card.component";
 
 export const SideBar = () => {
-	const { notesList } = useContext(AppContext);
-	const [activeId, setActiveId] = useState<string>("");
+	const { notesList, activeId, setActiveId } = useContext(AppContext);
 
 	return (
 		<Styled.SideBarContainer>
