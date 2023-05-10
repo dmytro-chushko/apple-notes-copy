@@ -11,6 +11,7 @@ interface IUseQuintaDb {
 	editNote: ({ id, title, content }: IEditNoteParams) => Promise<void>;
 	searchNote: (searchTerm: string) => Promise<void>;
 	updateNotesList: () => Promise<void>;
+	setIsLoading: TypeSetState<boolean>;
 	isLoading: boolean;
 }
 
@@ -32,7 +33,6 @@ export const useQuintaDb = ({ isDark, setNotesList }: IUseQuintaDbParams): IUseQ
 
 	const getAllNotes = async (): Promise<INote[] | undefined> => {
 		try {
-			setIsLoading(true);
 			const { data } = await axios.get<IGetAllNotes>(
 				`${baseUrl}/apps/${appId}/dtypes/entity/${entityId}.json`,
 				{
@@ -42,11 +42,10 @@ export const useQuintaDb = ({ isDark, setNotesList }: IUseQuintaDbParams): IUseQ
 					},
 				},
 			);
-			setIsLoading(false);
 
 			return data.records;
 		} catch (error) {
-			console.log(error);
+			notification.error((error as AxiosError).message);
 		}
 	};
 
@@ -66,6 +65,7 @@ export const useQuintaDb = ({ isDark, setNotesList }: IUseQuintaDbParams): IUseQ
 				},
 			});
 			await updateNotesList();
+			setIsLoading(false);
 			notification.success("Note has been deleted");
 		} catch (error) {
 			notification.error((error as AxiosError).message);
@@ -84,6 +84,7 @@ export const useQuintaDb = ({ isDark, setNotesList }: IUseQuintaDbParams): IUseQ
 				}),
 			});
 			await updateNotesList();
+			setIsLoading(false);
 			notification.success("Note has been created");
 		} catch (error) {
 			notification.error((error as AxiosError).message);
@@ -92,7 +93,6 @@ export const useQuintaDb = ({ isDark, setNotesList }: IUseQuintaDbParams): IUseQ
 
 	const editNote = async ({ id, title, content }: IEditNoteParams): Promise<void> => {
 		try {
-			setIsLoading(true);
 			await axios.put(`${baseUrl}/apps/${appId}/dtypes/${id}.json`, {
 				rest_api_key: apiKey,
 				json_values: JSON.stringify({
@@ -109,7 +109,6 @@ export const useQuintaDb = ({ isDark, setNotesList }: IUseQuintaDbParams): IUseQ
 
 	const searchNote = async (searchTerm: string): Promise<void> => {
 		try {
-			setIsLoading(true);
 			const { data } = await axios.post<IGetAllNotes>(
 				`${baseUrl}/search/${appId}.json`,
 				{
@@ -139,18 +138,10 @@ export const useQuintaDb = ({ isDark, setNotesList }: IUseQuintaDbParams): IUseQ
 				},
 			);
 			setNotesList(data.records);
-			setIsLoading(true);
 		} catch (error) {
 			notification.error((error as AxiosError).message);
 		}
 	};
-
-	// useEffect(() => {
-	// 	const fetchNotesList = async () => {
-	// 		await updateNotesList();
-	// 	};
-	// 	fetchNotesList();
-	// }, []);
 
 	return {
 		getAllNotes,
@@ -159,6 +150,7 @@ export const useQuintaDb = ({ isDark, setNotesList }: IUseQuintaDbParams): IUseQ
 		editNote,
 		searchNote,
 		updateNotesList,
+		setIsLoading,
 		isLoading,
 	};
 };

@@ -1,7 +1,9 @@
 import { useQuintaDb } from "hooks/quinta-db.hook";
-import { createContext, useCallback, useMemo, useState } from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
 import { TypeSetState } from "types/set-state.types";
 import { IEditNoteParams, INote, INoteContent } from "types/data.types";
+import { Loader } from "components/loader";
+import { useDebounce } from "hooks/debounce.hook";
 
 interface IAppProvider {
 	children: React.ReactNode;
@@ -29,16 +31,18 @@ interface IAppContext {
 export const AppContext = createContext<IAppContext>({} as IAppContext);
 
 export const AppContextProvider = ({ children }: IAppProvider) => {
-	const [isDark, setIsDark] = useState<boolean>(true);
+	const [isDark, setIsDark] = useState<boolean>(false);
 	const [isEdit, setIsEdit] = useState<boolean>(false);
 	const [searchTerm, setSearchTerm] = useState<string>("");
 	const [activeId, setActiveId] = useState<string>("");
 	const [notesList, setNotesList] = useState<INote[] | null>(null);
 	const [noteContent, setNoteContent] = useState<INoteContent | null>(null);
-	const { deleteNote, createNote, editNote, searchNote, updateNotesList, isLoading } = useQuintaDb({
-		isDark,
-		setNotesList,
-	});
+	const debouncedSearchTerm = useDebounce(searchTerm, 500);
+	const { deleteNote, createNote, editNote, searchNote, updateNotesList, isLoading, setIsLoading } =
+		useQuintaDb({
+			isDark,
+			setNotesList,
+		});
 
 	const handleDelete = async () => {
 		setNoteContent(null);
@@ -57,7 +61,9 @@ export const AppContextProvider = ({ children }: IAppProvider) => {
 			await searchNote(searchTerm);
 			setActiveId("");
 		} else {
+			setIsLoading(true);
 			await updateNotesList();
+			setIsLoading(false);
 		}
 	};
 
@@ -83,5 +89,14 @@ export const AppContextProvider = ({ children }: IAppProvider) => {
 		[isDark, searchTerm, notesList, isLoading, noteContent, activeId, isEdit],
 	);
 
-	return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
+	useEffect(() => {
+		handleSearch(debouncedSearchTerm);
+	}, [debouncedSearchTerm]);
+
+	return (
+		<AppContext.Provider value={value}>
+			{isLoading && <Loader show={isLoading} />}
+			{children}
+		</AppContext.Provider>
+	);
 };

@@ -3,3 +3,7 @@ export enum BUTTON_ICONS {
 	DELETE = "delete",
 	EDIT = "edit",
 }
+
+export interface ILoader {
+	show: boolean;
+}
