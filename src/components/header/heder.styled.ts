@@ -1,9 +1,13 @@
 import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
+	position: fixed;
+	top: 0;
+
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	width: 100%;
 	padding: ${({ theme }) => theme.size.s};
 
 	background-color: ${({ theme }) => theme.colors.secondaryChangingBgc};

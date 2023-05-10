@@ -37,6 +37,7 @@ export interface ITheme {
 	};
 	borderRadius: {
 		fields: string;
+		decorative: string;
 	};
 	outline: {
 		primaryButtonOutline: string;
@@ -92,10 +93,11 @@ export const theme = (isDark?: boolean): ITheme => ({
 	},
 	border: {
 		primaryBorder: `2px solid ${isDark ? "#9F9FA5" : "#8A8A8E"}`,
-		secondaryBorder: `2px solid ${isDark ? "#333639" : "#ECECEC"}`,
+		secondaryBorder: `2px solid ${isDark ? "#323232" : "#ECECEC"}`,
 	},
 	borderRadius: {
 		fields: "10px",
+		decorative: "6px",
 	},
 	outline: {
 		primaryButtonOutline: "2px solid #93ACE3",

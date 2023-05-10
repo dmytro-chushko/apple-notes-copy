@@ -30,7 +30,7 @@ export const ControlButton = styled.button`
 	@media (hover: hover) {
 		:hover:not([disabled]) {
 			transform: scale(1.3);
-			border-radius: 6px;
+			border-radius: ${({ theme }) => theme.borderRadius.decorative};
 			background-color: ${({ theme }) => theme.colors.primaryChangingBgc};
 		}
 	}

@@ -9,6 +9,8 @@ interface IUseQuintaDb {
 	deleteNote: (id: string) => Promise<void>;
 	createNote: () => Promise<void>;
 	editNote: ({ id, title, content }: IEditNoteParams) => Promise<void>;
+	searchNote: (searchTerm: string) => Promise<void>;
+	updateNotesList: () => Promise<void>;
 	isLoading: boolean;
 }
 
@@ -105,18 +107,58 @@ export const useQuintaDb = ({ isDark, setNotesList }: IUseQuintaDbParams): IUseQ
 		}
 	};
 
-	useEffect(() => {
-		const fetchNotesList = async () => {
-			await updateNotesList();
-		};
-		fetchNotesList();
-	}, []);
+	const searchNote = async (searchTerm: string): Promise<void> => {
+		try {
+			setIsLoading(true);
+			const { data } = await axios.post<IGetAllNotes>(
+				`${baseUrl}/search/${appId}.json`,
+				{
+					search: [
+						[
+							{
+								a: noteTitle,
+								b: searchTerm,
+								o: "like",
+							},
+						],
+						[
+							{
+								a: noteContent,
+								b: searchTerm,
+								o: "like",
+							},
+						],
+					],
+				},
+				{
+					params: {
+						rest_api_key: apiKey,
+						entity_id: entityId,
+						name_value: 1,
+					},
+				},
+			);
+			setNotesList(data.records);
+			setIsLoading(true);
+		} catch (error) {
+			notification.error((error as AxiosError).message);
+		}
+	};
+
+	// useEffect(() => {
+	// 	const fetchNotesList = async () => {
+	// 		await updateNotesList();
+	// 	};
+	// 	fetchNotesList();
+	// }, []);
 
 	return {
 		getAllNotes,
 		deleteNote,
 		createNote,
 		editNote,
+		searchNote,
+		updateNotesList,
 		isLoading,
 	};
 };

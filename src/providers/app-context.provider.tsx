@@ -23,6 +23,7 @@ interface IAppContext {
 	handleDelete: () => Promise<void>;
 	handleCreate: () => Promise<void>;
 	handleEdit: ({ id, title, content }: IEditNoteParams) => Promise<void>;
+	handleSearch: (searchTerm: string) => Promise<void>;
 }
 
 export const AppContext = createContext<IAppContext>({} as IAppContext);
@@ -34,7 +35,10 @@ export const AppContextProvider = ({ children }: IAppProvider) => {
 	const [activeId, setActiveId] = useState<string>("");
 	const [notesList, setNotesList] = useState<INote[] | null>(null);
 	const [noteContent, setNoteContent] = useState<INoteContent | null>(null);
-	const { deleteNote, createNote, editNote, isLoading } = useQuintaDb({ isDark, setNotesList });
+	const { deleteNote, createNote, editNote, searchNote, updateNotesList, isLoading } = useQuintaDb({
+		isDark,
+		setNotesList,
+	});
 
 	const handleDelete = async () => {
 		setNoteContent(null);
@@ -43,8 +47,19 @@ export const AppContextProvider = ({ children }: IAppProvider) => {
 	};
 
 	const handleCreate = async () => await createNote();
+
 	const handleEdit = async ({ id, title, content }: IEditNoteParams) =>
 		await editNote({ id, title, content });
+
+	const handleSearch = async (searchTerm: string) => {
+		if (searchTerm) {
+			setNoteContent(null);
+			await searchNote(searchTerm);
+			setActiveId("");
+		} else {
+			await updateNotesList();
+		}
+	};
 
 	const value = useMemo(
 		() => ({
@@ -63,6 +78,7 @@ export const AppContextProvider = ({ children }: IAppProvider) => {
 			handleDelete,
 			handleCreate,
 			handleEdit,
+			handleSearch,
 		}),
 		[isDark, searchTerm, notesList, isLoading, noteContent, activeId, isEdit],
 	);

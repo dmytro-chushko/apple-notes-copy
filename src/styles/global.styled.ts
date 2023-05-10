@@ -21,6 +21,7 @@ export const GlobalStyle = createGlobalStyle`
 
 			color: ${({ theme }) => theme.colors.primaryChangingColor};
 			background-color: ${({ theme }) => theme.colors.primaryChangingBgc};
+			overflow: hidden;
 
 			transition: ${({ theme }) => theme.animation.primaryTransition};
 
