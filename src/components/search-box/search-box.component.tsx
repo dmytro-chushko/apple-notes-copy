@@ -2,12 +2,12 @@ import { useContext, useState, useEffect } from "react";
 
 import * as Styled from "./search-box.styled";
 import { AppContext } from "providers";
-import { useDebounced } from "hooks/debounce.hook";
+import { useDebounce } from "hooks/debounce.hook";
 
 export const SearchBox = () => {
 	const { setSearchTerm } = useContext(AppContext);
 	const [value, setValue] = useState<string>("");
-	const debouncedSearchTerm = useDebounced(value, 500);
+	const debouncedSearchTerm = useDebounce(value, 500);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setValue(e.target.value);
@@ -15,7 +15,7 @@ export const SearchBox = () => {
 
 	useEffect(() => {
 		if (debouncedSearchTerm) {
-			setSearchTerm && setSearchTerm(debouncedSearchTerm);
+			setSearchTerm(debouncedSearchTerm);
 		}
 	}, [debouncedSearchTerm]);
 

@@ -21,8 +21,10 @@ export const formatsDateWithTime = (dateType: DATE_TYPE, inputDate?: string): st
 
 	if (dateType === DATE_TYPE.SIDE_BAR) {
 		return `${
-			today ? `${day}/${modifyDateOrTime(month)}/${date.getFullYear().toString().slice(2)} ` : ``
-		}${time}`;
+			today
+				? `${day}/${modifyDateOrTime(month)}/${date.getFullYear().toString().slice(2)} `
+				: `${time}`
+		}`;
 	}
 
 	if (dateType === DATE_TYPE.WORKSPACE) {

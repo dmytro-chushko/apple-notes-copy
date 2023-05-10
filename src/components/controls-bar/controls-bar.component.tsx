@@ -8,18 +8,18 @@ import { ReactComponent as EditIcon } from "assets/icons/edit.svg";
 import * as Styled from "./controls-bar.styled";
 
 export const ControlsBar = () => {
-	const { activeId } = useContext(AppContext);
+	const { activeId, handleCreate, setIsEdit } = useContext(AppContext);
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const buttonsEL = [AddIcon, DeleteIcon, EditIcon];
 
 	const setHandler = (element: React.FunctionComponent) => {
 		switch (element) {
 			case AddIcon:
-				return () => console.log("add");
+				return handleCreate;
 			case DeleteIcon:
 				return () => setIsOpen(true);
 			case EditIcon:
-				return () => console.log("edit");
+				return () => setIsEdit(true);
 			default:
 				return;
 		}
