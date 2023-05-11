@@ -96,6 +96,7 @@ export const AppContextProvider = ({ children }: IAppProvider) => {
 
 	useEffect(() => {
 		handleSearch(debouncedSearchTerm);
+		setIsWorkspaceOpen(false);
 	}, [debouncedSearchTerm]);
 
 	return (

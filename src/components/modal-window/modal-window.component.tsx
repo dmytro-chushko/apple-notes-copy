@@ -1,9 +1,9 @@
 import { useMemo, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { ContentWindow } from "./content-window";
+import { TypeSetState } from "types/set-state.types";
 
 import * as Styled from "./modal-window.styled";
-import { TypeSetState } from "types/set-state.types";
 
 interface IModalWindow {
 	isOpen: boolean;

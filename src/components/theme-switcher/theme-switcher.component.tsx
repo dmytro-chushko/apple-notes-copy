@@ -1,4 +1,5 @@
 import { TypeSetState } from "types/set-state.types";
+
 import * as Styled from "./theme-switcher.styled";
 
 interface IThemeSwitcher {

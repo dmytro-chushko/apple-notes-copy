@@ -3,9 +3,9 @@ import { AppContext } from "providers";
 import { formatsDateWithTime } from "utils";
 import { DATE_TYPE } from "types/data.types";
 import { ReactComponent as Xcircle } from "assets/icons/x-circle.svg";
+import { useDebounce } from "hooks/debounce.hook";
 
 import * as Styled from "./workspace.styled";
-import { useDebounce } from "hooks/debounce.hook";
 
 export const Workspace = () => {
 	const {
@@ -14,6 +14,7 @@ export const Workspace = () => {
 		isEdit,
 		setIsEdit,
 		activeId,
+		setActiveId,
 		handleEdit,
 		setIsWorkspaceOpen,
 		isWorkspaceOpen,
@@ -32,7 +33,10 @@ export const Workspace = () => {
 	const handleChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
 		setContentValue(e.target.value);
 
-	const handleCloseMobileWorkspace = () => setIsWorkspaceOpen(false);
+	const handleCloseMobileWorkspace = () => {
+		setIsWorkspaceOpen(false);
+		setActiveId("");
+	};
 
 	useEffect(() => {
 		if (noteContent) {

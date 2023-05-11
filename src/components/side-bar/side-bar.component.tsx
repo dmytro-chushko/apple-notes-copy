@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { AppContext } from "providers";
+import { NoteCard } from "./note-card/note-card.component";
 
 import * as Styled from "./side-bar.styled";
-import { NoteCard } from "./note-card/note-card.component";
 
 export const SideBar = () => {
 	const { notesList, setIsWorkspaceOpen } = useContext(AppContext);

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios, { AxiosError } from "axios";
 import { IEditNoteParams, IGetAllNotes, INote } from "types/data.types";
 import { TypeSetState } from "types/set-state.types";

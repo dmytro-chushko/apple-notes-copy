@@ -12,7 +12,7 @@ export const SearchBox = () => {
 
 	return (
 		<Styled.SearchContainer>
-			<Styled.SearchField type="text" value={searchTerm} onChange={handleChange} />
+			<Styled.SearchField type="search" value={searchTerm} onChange={handleChange} />
 			<Styled.Icon />
 		</Styled.SearchContainer>
 	);

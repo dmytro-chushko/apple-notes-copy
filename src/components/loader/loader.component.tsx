@@ -1,5 +1,5 @@
-import { ILoader } from "styles/consts";
 import { RotatingLines } from "react-loader-spinner";
+import { ILoader } from "styles/consts";
 
 import * as Styled from "./loader.styled";
 
