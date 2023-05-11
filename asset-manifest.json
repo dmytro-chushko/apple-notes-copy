@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/apple-notes-copy/static/css/main.bc1dca3e.css",
-    "main.js": "/apple-notes-copy/static/js/main.ccb81126.js",
+    "main.js": "/apple-notes-copy/static/js/main.9399a57f.js",
     "static/js/787.d32a154f.chunk.js": "/apple-notes-copy/static/js/787.d32a154f.chunk.js",
     "index.html": "/apple-notes-copy/index.html",
     "static/media/ligthThemeIcon.svg": "/apple-notes-copy/static/media/ligthThemeIcon.d8065cc5e9f18dd52a4eb5093a845b4e.svg",
@@ -12,11 +12,11 @@
     "static/media/plus.svg": "/apple-notes-copy/static/media/plus.b45ea0208bfb615b6d96dfcdd4cc08cd.svg",
     "static/media/darkThemeIcon.svg": "/apple-notes-copy/static/media/darkThemeIcon.6578ddca4b51e19d95405ebbbd6a31dd.svg",
     "main.bc1dca3e.css.map": "/apple-notes-copy/static/css/main.bc1dca3e.css.map",
-    "main.ccb81126.js.map": "/apple-notes-copy/static/js/main.ccb81126.js.map",
+    "main.9399a57f.js.map": "/apple-notes-copy/static/js/main.9399a57f.js.map",
     "787.d32a154f.chunk.js.map": "/apple-notes-copy/static/js/787.d32a154f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.bc1dca3e.css",
-    "static/js/main.ccb81126.js"
+    "static/js/main.9399a57f.js"
   ]
 }
