@@ -50,6 +50,7 @@ export interface ITheme {
 		medMobile: string;
 		maxMobile: string;
 		minTablet: string;
+		middleTablet: string;
 		maxTablet: string;
 		minLaptop: string;
 		maxLaptop: string;
@@ -110,6 +111,7 @@ export const theme = (isDark?: boolean): ITheme => ({
 		medMobile: "max-width: 389px",
 		maxMobile: "max-width: 480px",
 		minTablet: "min-width: 481px",
+		middleTablet: "max-width: 820px",
 		maxTablet: "max-width: 1023px",
 		minLaptop: "min-width: 1024px",
 		maxLaptop: "max-width: 1279px",

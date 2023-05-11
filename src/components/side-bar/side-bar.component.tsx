@@ -5,10 +5,12 @@ import * as Styled from "./side-bar.styled";
 import { NoteCard } from "./note-card/note-card.component";
 
 export const SideBar = () => {
-	const { notesList } = useContext(AppContext);
+	const { notesList, setIsWorkspaceOpen } = useContext(AppContext);
+
+	const handleClick = () => setIsWorkspaceOpen(true);
 
 	return (
-		<Styled.SideBarContainer>
+		<Styled.SideBarContainer onClick={handleClick}>
 			<ul>
 				{notesList &&
 					notesList.map(({ id, values: { title, content, date } }) => (

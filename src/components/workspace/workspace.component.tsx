@@ -1,15 +1,23 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "providers";
-import { CardTitle } from "styles/typography";
 import { formatsDateWithTime } from "utils";
 import { DATE_TYPE } from "types/data.types";
+import { ReactComponent as Xcircle } from "assets/icons/x-circle.svg";
 
 import * as Styled from "./workspace.styled";
 import { useDebounce } from "hooks/debounce.hook";
 
 export const Workspace = () => {
-	const { noteContent, setNoteContent, isEdit, setIsEdit, activeId, handleEdit } =
-		useContext(AppContext);
+	const {
+		noteContent,
+		setNoteContent,
+		isEdit,
+		setIsEdit,
+		activeId,
+		handleEdit,
+		setIsWorkspaceOpen,
+		isWorkspaceOpen,
+	} = useContext(AppContext);
 	const [titleValue, setTitleValue] = useState<string>(noteContent ? noteContent.title : "");
 	const [contentValue, setContentValue] = useState<string>(noteContent ? noteContent.content : "");
 	const editAreaRef = useRef<HTMLDivElement>(null);
@@ -23,6 +31,8 @@ export const Workspace = () => {
 
 	const handleChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
 		setContentValue(e.target.value);
+
+	const handleCloseMobileWorkspace = () => setIsWorkspaceOpen(false);
 
 	useEffect(() => {
 		if (noteContent) {
@@ -58,9 +68,12 @@ export const Workspace = () => {
 	}, [debouncedTitleValue, debouncedContentValue]);
 
 	return (
-		<Styled.WorkspaceContainer>
+		<Styled.WorkspaceContainer isMobileWindowOpen={isWorkspaceOpen}>
 			{noteContent && (
 				<>
+					<Styled.CloseButton type="button" onClick={handleCloseMobileWorkspace}>
+						<Xcircle />
+					</Styled.CloseButton>
 					<Styled.DateContainer>{modifiedDate}</Styled.DateContainer>
 					{!isEdit ? (
 						<>
@@ -68,7 +81,7 @@ export const Workspace = () => {
 							<Styled.NodeContent>{noteContent.content}</Styled.NodeContent>
 						</>
 					) : (
-						<div ref={editAreaRef}>
+						<Styled.EditArea ref={editAreaRef}>
 							<Styled.EditTitleField
 								type="text"
 								value={titleValue}
@@ -83,7 +96,7 @@ export const Workspace = () => {
 								minLength={1}
 								maxLength={2000}
 							/>
-						</div>
+						</Styled.EditArea>
 					)}
 				</>
 			)}

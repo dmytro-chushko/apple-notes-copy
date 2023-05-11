@@ -17,11 +17,13 @@ interface IAppContext {
 	activeId: string;
 	isEdit: boolean;
 	noteContent: INoteContent | null;
+	isWorkspaceOpen: boolean;
 	setIsDark: TypeSetState<boolean>;
 	setSearchTerm: TypeSetState<string>;
 	setNoteContent: TypeSetState<INoteContent | null>;
 	setActiveId: TypeSetState<string>;
 	setIsEdit: TypeSetState<boolean>;
+	setIsWorkspaceOpen: TypeSetState<boolean>;
 	handleDelete: () => Promise<void>;
 	handleCreate: () => Promise<void>;
 	handleEdit: ({ id, title, content }: IEditNoteParams) => Promise<void>;
@@ -37,6 +39,7 @@ export const AppContextProvider = ({ children }: IAppProvider) => {
 	const [activeId, setActiveId] = useState<string>("");
 	const [notesList, setNotesList] = useState<INote[] | null>(null);
 	const [noteContent, setNoteContent] = useState<INoteContent | null>(null);
+	const [isWorkspaceOpen, setIsWorkspaceOpen] = useState<boolean>(false);
 	const debouncedSearchTerm = useDebounce(searchTerm, 500);
 	const { deleteNote, createNote, editNote, searchNote, updateNotesList, isLoading, setIsLoading } =
 		useQuintaDb({
@@ -76,17 +79,19 @@ export const AppContextProvider = ({ children }: IAppProvider) => {
 			activeId,
 			isEdit,
 			noteContent,
+			isWorkspaceOpen,
 			setIsDark,
 			setSearchTerm,
 			setNoteContent,
 			setActiveId,
 			setIsEdit,
+			setIsWorkspaceOpen,
 			handleDelete,
 			handleCreate,
 			handleEdit,
 			handleSearch,
 		}),
-		[isDark, searchTerm, notesList, isLoading, noteContent, activeId, isEdit],
+		[isDark, searchTerm, notesList, isLoading, noteContent, activeId, isEdit, isWorkspaceOpen],
 	);
 
 	useEffect(() => {

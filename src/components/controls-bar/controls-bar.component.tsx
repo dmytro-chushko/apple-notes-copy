@@ -32,6 +32,7 @@ export const ControlsBar = () => {
 					return (
 						<Styled.ControlButton
 							key={i}
+							type="button"
 							onClick={setHandler(ButtonEl)}
 							disabled={i !== 0 && !activeId}
 						>

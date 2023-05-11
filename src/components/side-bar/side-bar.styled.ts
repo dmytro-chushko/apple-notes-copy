@@ -7,18 +7,20 @@ export const SideBarContainer = styled.aside`
 
 	overflow-y: scroll;
 
-	::-webkit-scrollbar {
-		width: 10px;
-	}
+	@media (${({ theme }) => theme.media.minLaptop}) {
+		::-webkit-scrollbar {
+			width: 10px;
+		}
 
-	::-webkit-scrollbar-track {
-		background: ${({ theme }) => theme.colors.primaryChangingBgc};
-	}
+		::-webkit-scrollbar-track {
+			background: ${({ theme }) => theme.colors.primaryChangingBgc};
+		}
 
-	::-webkit-scrollbar-thumb {
-		background-color: ${({ theme }) => theme.colors.hoveredCardBgc};
-		border-radius: ${({ theme }) => theme.borderRadius.decorative};
-		border: ${({ theme }) => theme.border.secondaryBorder};
+		::-webkit-scrollbar-thumb {
+			background-color: ${({ theme }) => theme.colors.hoveredCardBgc};
+			border-radius: ${({ theme }) => theme.borderRadius.decorative};
+			border: ${({ theme }) => theme.border.secondaryBorder};
+		}
 	}
 
 	@media (${({ theme }) => theme.media.maxTablet}) {
@@ -27,5 +29,6 @@ export const SideBarContainer = styled.aside`
 
 	@media (${({ theme }) => theme.media.maxMobile}) {
 		height: calc(100vh - 44px);
+		width: 100%;
 	}
 `;

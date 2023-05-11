@@ -22,8 +22,12 @@ export const ContentWindow = ({ onClose }: IContentWindow) => {
 		<Styled.WindowContainer>
 			<Styled.ContentParagraph>Are you shure want to delete the note?</Styled.ContentParagraph>
 			<Styled.ButtonsWrapper>
-				<Styled.ModalButton onClick={handleCancelClick}>Cancel</Styled.ModalButton>
-				<Styled.ModalButton onClick={handleDeleteClick}>Delete</Styled.ModalButton>
+				<Styled.ModalButton type="button" onClick={handleCancelClick}>
+					Cancel
+				</Styled.ModalButton>
+				<Styled.ModalButton type="button" onClick={handleDeleteClick}>
+					Delete
+				</Styled.ModalButton>
 			</Styled.ButtonsWrapper>
 		</Styled.WindowContainer>
 	);

@@ -33,4 +33,10 @@ export const CardWrapper = styled.div`
 	display: flex;
 	align-items: center;
 	gap: ${({ theme }) => theme.size.m};
+
+	@media (${({ theme }) => theme.media.middleTablet}) {
+		flex-direction: column;
+		align-items: start;
+		gap: ${({ theme }) => theme.size.s};
+	}
 `;
