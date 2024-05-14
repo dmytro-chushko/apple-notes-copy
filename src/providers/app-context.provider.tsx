@@ -30,7 +30,9 @@ interface IAppContext {
   handleSearch: (searchTerm: string) => Promise<void>;
 }
 
-const initialTheme: boolean = JSON.parse(localStorage.getItem("isDark") || "");
+const initialTheme: boolean = JSON.parse(
+  localStorage.getItem("isDark") || "false",
+);
 
 export const AppContext = createContext<IAppContext>({} as IAppContext);
 
