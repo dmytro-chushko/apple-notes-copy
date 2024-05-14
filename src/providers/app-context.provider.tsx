@@ -30,12 +30,12 @@ interface IAppContext {
   handleSearch: (searchTerm: string) => Promise<void>;
 }
 
+const initialTheme: boolean = JSON.parse(localStorage.getItem("isDark") || "");
+
 export const AppContext = createContext<IAppContext>({} as IAppContext);
 
 export const AppContextProvider = ({ children }: IAppProvider) => {
-  const [isDark, setIsDark] = useState<boolean>(
-    JSON.parse(localStorage.getItem("isDark") || "") || false,
-  );
+  const [isDark, setIsDark] = useState<boolean>(initialTheme || false);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [activeId, setActiveId] = useState<string>("");
