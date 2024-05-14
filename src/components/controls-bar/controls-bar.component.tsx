@@ -8,7 +8,7 @@ import { useContext, useState } from "react";
 import * as Styled from "./controls-bar.styled";
 
 export const ControlsBar = () => {
-  const { activeId, handleCreate, setIsEdit, isEdit } = useContext(AppContext);
+  const { activeId, handleCreate, setIsEdit } = useContext(AppContext);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const buttonsEL = [AddIcon, DeleteIcon, EditIcon];
 

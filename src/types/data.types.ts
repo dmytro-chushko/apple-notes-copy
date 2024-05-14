@@ -1,29 +1,30 @@
 export interface INote {
-	id: string;
-	values: {
-		title: string;
-		content: string;
-		date: string;
-	};
+  id: string;
+  values: {
+    title: string;
+    content: string;
+    date: string;
+  };
+  updated_at: string;
 }
 
 export interface IGetAllNotes {
-	records: INote[];
+  records: INote[];
 }
 
 export interface INoteContent {
-	title: string;
-	content: string;
-	date: string;
+  title: string;
+  content: string;
+  date: string;
 }
 
 export enum DATE_TYPE {
-	WORKSPACE = "workspace",
-	SIDE_BAR = "side-bar",
+  WORKSPACE = "workspace",
+  SIDE_BAR = "side-bar",
 }
 
 export interface IEditNoteParams {
-	id: string;
-	title: string;
-	content: string;
+  id: string;
+  title: string;
+  content: string;
 }
