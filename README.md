@@ -1,46 +1,78 @@
-# Getting Started with Create React App
+# Note manager
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Application allows users to create, edit, and delete notes efficiently. Each
+note displays the creation timestamp, helping users track their entries. The app
+features a powerful search function that enables users to find notes by their
+titles quickly. Additionally, it offers a seamless switch between light and dark
+themes, ensuring a comfortable user experience in any lighting condition. The
+application is fully responsive, providing a correct display on devices with
+different screen sizes, including both desktops and mobile devices.
 
-## Available Scripts
+## Installation:
 
-In the project directory, you can run:
+### Requirenments:
 
-### `npm start`
+Make sure you have a version of [Node.js](https://nodejs.org/en/download) not
+lower than 16 version installed on your computer. Download and install if it is
+necessary.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Clone the repo from comand line:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```bash
+$ git clone https://github.com/dmytro-chushko/apple-notes-copy.git
+$ cd apple-notes-copy
+```
 
-### `npm test`
+### Install packeges:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+$ npm i
+```
 
-### `npm run build`
+## Configuration of the QuintaDB service and `.env` file:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### QuintaDB:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Go to the https://quintadb.com.ua/.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. You should sign up and create new application and form (fields: title,
+   content, date).
+2. Create your API KEY (see the
+   [documentation](https://quintadb.com.ua/api/index))
+3. By learning the documentation, you should get the following keys (you may use
+   [Postman](https://www.postman.com/) for making required queries):
 
-### `npm run eject`
+   - APP_ID;
+   - ENTITY_ID;
+   - Keys wich are the ids of each field of the form; (use
+     [documentation](https://quintadb.com.ua/api/index))
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### `.env` file:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Create `.env` file in the root directory and set the next variables:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- REACT_APP_BASE_URL=https://quintadb.com.ua
+- REACT_APP_APP_ID = { APP_ID }
+- REACT_APP_ENTITY_ID = { ENTITY_ID }
+- REACT_APP_API_KEY = { API_KEY }
+- REACT_APP_NOTE_TITLE = { id of "title" field }
+- REACT_APP_NOTE_CONTENT = { id of "content" field }
+- REACT_APP_NOTE_DATE = { id of "date" field }
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## To run the project:
 
-## Learn More
+```bash
+$ npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+</br>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+\__Navigate to the address in your browser http://localhost:3000. This page will
+automatically reload after saving changes to project files._
+
+## Technologies
+
+- **Framework**: React SPA ([Create React App](https://create-react-app.dev/))
+- **State**: [Context](https://react.dev/learn/passing-data-deeply-with-context)
+- **Queries**: [Axios](https://axios-http.com/docs/intro)
+- **UI**: [Styled-Components](https://styled-components.com/)
