@@ -67,7 +67,7 @@ $ npm start
 
 </br>
 
-\__Navigate to the address in your browser http://localhost:3000. This page will
+_Navigate to the address in your browser http://localhost:3000. This page will
 automatically reload after saving changes to project files._
 
 ## Technologies
